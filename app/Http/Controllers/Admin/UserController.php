@@ -11,12 +11,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( Request $request )
     {
         return response()->json(
             [
                 "status" => "success",
-                "data" => User::whereEmail(\request()->get('email'))->paginate(10)
+                "data" => User::whereEmail($request->get('email'))->paginate(10)
             ]
         );
     }
