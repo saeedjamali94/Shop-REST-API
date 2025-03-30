@@ -16,7 +16,7 @@ class UserController extends Controller
         return response()->json(
             [
                 "status" => "success",
-                "data" => User::paginate(10)
+                "data" => User::whereEmail(\request()->get('email'))->paginate(10)
             ]
         );
     }
