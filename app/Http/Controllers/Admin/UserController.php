@@ -13,10 +13,16 @@ class UserController extends Controller
      */
     public function index( Request $request )
     {
+        $results = User::query();
+
+        if( $request->has('email') ){
+            $results = $results->whereEmail($request->get('email'));
+        }
+
         return response()->json(
             [
                 "status" => "success",
-                "data" => User::whereEmail($request->get('email'))->paginate(10)
+                "data" => $results->paginate(10)
             ]
         );
     }
