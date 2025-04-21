@@ -38,7 +38,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'min:2', 'max:255'],
             'last_name' => ['required', 'string', 'min:2', 'max:255'],
-            'phone' => ['required', 'string', 'unique:users,phone', 'min:11', 'max:11'],
+            'phone' => ['required', 'string', 'unique:users,phone', 'regex:/^09[0-9]{9}$/'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'max:255'],
         ]);
